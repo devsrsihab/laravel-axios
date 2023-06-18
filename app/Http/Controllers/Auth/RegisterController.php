@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
@@ -18,7 +19,9 @@ class RegisterController extends Controller
     // The form perform action wtih this method
     public function actionForm(RegisterRequest $request)
     {
-        if ($request->fails())
+        $validator = Validator::make($request->all(), $request->rules());
+
+        if ($validator->fails())
         {
             return response()->json(["errors" => $request->messages()],422);
         }
