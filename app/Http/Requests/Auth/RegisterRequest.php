@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -27,10 +28,19 @@ class RegisterRequest extends FormRequest
         // 4. the error will be shown under this div which div is incorrect data
         
         return [
-            "name"                  => "required",
+            "name"                  =>["required","max:36","regex:/^[a-zA-Z.:\s]+$/", // Only allow letters and spaces
+                                        function ($attribute, $value, $fail) {
+                                            if (URL::isValidUrl($value)) {
+                                                $fail($attribute.' cannot be a URL.');
+                                            }
+                                        },
+                                    ],
+
             "email"                 => "required|email|unique:users,email",
             "password"              => "required|min:8|max:16",
-            // "password_confirmation" => "same:password|required_if:password,!==null",
+            "password_confirmation" => "same:password|required_if:password,!==null",
         ];
+
+        
     }
 }

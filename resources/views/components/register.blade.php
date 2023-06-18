@@ -16,7 +16,6 @@
                         @csrf
                         @method('POST')
                         <div class="mb-4 ">
-                            <div class="md:ml-2">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="name">
                                     Full Name
                                 </label>
@@ -24,7 +23,6 @@
                                     class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="name" type="text" placeholder="Full Name" />
                                     <p id="name-error" class="st-error hidden text-xs italic text-red-500"></p>
-                            </div>
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
@@ -32,7 +30,7 @@
                             </label>
                             <input
                                 class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                id="email" type="email" placeholder="Email" />
+                                id="email" type="text" placeholder="Email" />
                                 <p id="email-error" class="st-error hidden text-xs italic text-red-500"></p>
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
@@ -94,7 +92,7 @@
           const name      = document.getElementById('name').value;;
           const email     = document.getElementById('email').value;
           const password  = document.getElementById('password').value;
-          const confirm_password       = document.getElementById('password_confirmation').value;
+          const password_confirmation       = document.getElementById('password_confirmation').value;
 
 
 
